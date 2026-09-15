@@ -12,10 +12,26 @@ using namespace std;
 
 const int NUM_RUNNERS = 5;
 const int NUM_DAYS = 7;
+void readRunnerData(string names[], double miles[][NUM_DAYS]);
+void calculateTotalsAndAverages(
+    double miles[][NUM_DAYS],
+    double totals[],
+    double averages[]);
+void displayResults(
+    string names[],
+    double miles[][NUM_DAYS],
+    double totals[],
+    double averages[]);
 
 int main()
 {
-    cout << "Marathon Runners Program" << endl;
+    string runnerNames[NUM_RUNNERS];
+
+    double miles[NUM_RUNNERS][NUM_DAYS];
+
+    double totals[NUM_RUNNERS];
+
+    double averages[NUM_RUNNERS];
 
     return 0;
 }
