@@ -35,6 +35,12 @@ int main()
 
     readRunnerData(runnerNames, miles);
 
+    calculateTotalsAndAverages(
+        miles,
+        totals,
+        averages);
+
+
     return 0;
 }
 
@@ -54,4 +60,22 @@ void readRunnerData(string names[],
     }
 
     inputFile.close();
+}
+
+void calculateTotalsAndAverages(
+    double miles[][NUM_DAYS],
+    double totals[],
+    double averages[])
+{
+    for (int row = 0; row < NUM_RUNNERS; row++)
+    {
+        totals[row] = 0;
+
+        for (int col = 0; col < NUM_DAYS; col++)
+        {
+            totals[row] += miles[row][col];
+        }
+
+        averages[row] = totals[row] / NUM_DAYS;
+    }
 }
