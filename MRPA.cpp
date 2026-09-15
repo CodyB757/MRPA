@@ -40,6 +40,12 @@ int main()
         totals,
         averages);
 
+    displayResults(
+        runnerNames,
+        miles,
+        totals,
+        averages);
+
 
     return 0;
 }
@@ -77,5 +83,42 @@ void calculateTotalsAndAverages(
         }
 
         averages[row] = totals[row] / NUM_DAYS;
+    }
+}
+
+void displayResults(
+    string names[],
+    double miles[][NUM_DAYS],
+    double totals[],
+    double averages[])
+{
+    cout << left << setw(12) << "Runner";
+
+    for (int day = 1; day <= NUM_DAYS; day++)
+    {
+        cout << setw(8) << day;
+    }
+
+    cout << setw(10) << "Total";
+    cout << setw(10) << "Average";
+    cout << endl;
+
+    for (int row = 0; row < NUM_RUNNERS; row++)
+    {
+        cout << left << setw(12) << names[row];
+
+        for (int col = 0; col < NUM_DAYS; col++)
+        {
+            cout << setw(8) << miles[row][col];
+        }
+
+        cout << setw(10) << totals[row];
+
+        cout << fixed
+            << setprecision(2)
+            << setw(10)
+            << averages[row];
+
+        cout << endl;
     }
 }
