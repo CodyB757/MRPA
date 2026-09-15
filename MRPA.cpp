@@ -1,7 +1,12 @@
-// Cody Blake
-// CSC 222
-// Marathon Runners Parallel Arrays Project (MRPA)
-// September 10th, 2026
+/* 
+Cody Blake
+CSC 222
+Marathon Runners Parallel Arrays Project (MRPA)
+September 10th, 2026
+Reads runner names and mileage data
+from a file, calculates totals and
+averages, and displays the results in a formatted table.
+*/
 
 #include <iostream>
 #include <fstream>
@@ -12,26 +17,26 @@ using namespace std;
 
 const int NUM_RUNNERS = 5;
 const int NUM_DAYS = 7;
+
 void readRunnerData(string names[], double miles[][NUM_DAYS]);
 void calculateTotalsAndAverages(
     double miles[][NUM_DAYS],
     double totals[],
     double averages[]);
+
 void displayResults(
     string names[],
     double miles[][NUM_DAYS],
     double totals[],
     double averages[]);
-ifstream inputFile("runners.txt");
+
+void displayHeading();
 
 int main()
 {
     string runnerNames[NUM_RUNNERS];
-
     double miles[NUM_RUNNERS][NUM_DAYS];
-
     double totals[NUM_RUNNERS];
-
     double averages[NUM_RUNNERS];
 
     readRunnerData(runnerNames, miles);
@@ -47,7 +52,6 @@ int main()
         totals,
         averages);
 
-
     return 0;
 }
 
@@ -55,6 +59,12 @@ void readRunnerData(string names[],
     double miles[][NUM_DAYS])
 {
     ifstream inputFile("runners.txt");
+
+    if (!inputFile)
+    {
+        cout << "Error opening file." << endl;
+        return;
+    }
 
     for (int row = 0; row < NUM_RUNNERS; row++)
     {
@@ -87,6 +97,22 @@ void calculateTotalsAndAverages(
     }
 }
 
+void displayHeading()
+{
+    cout << left << setw(12) << "Runner";
+
+    for (int day = 1; day <= NUM_DAYS; day++)
+    {
+        cout << setw(8) << day;
+    }
+
+    cout << setw(10) << "Total"
+        << setw(10) << "Average"
+        << endl;
+
+    cout << string(88, '-') << endl;
+}
+
 void displayResults(
     string names[],
     double miles[][NUM_DAYS],
@@ -104,28 +130,9 @@ void displayResults(
             cout << setw(8) << miles[row][col];
         }
 
-        cout << setw(10) << totals[row];
-
-        cout << fixed
-            << setprecision(2)
-            << setw(10)
-            << averages[row];
-
-        cout << endl;
+        cout << setw(10) << totals[row]
+            << fixed << setprecision(2)
+            << setw(10) << averages[row]
+            << endl;
     }
-}
-
-void displayHeading()
-{
-    cout << left << setw(12) << "Runner";
-
-    for (int day = 1; day <= NUM_DAYS; day++)
-    {
-        cout << setw(8) << day;
-    }
-
-    cout << setw(10) << "Total";
-    cout << setw(10) << "Average";
-
-    cout << endl;
 }
