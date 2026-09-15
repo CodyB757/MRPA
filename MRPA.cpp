@@ -22,6 +22,7 @@ void displayResults(
     double miles[][NUM_DAYS],
     double totals[],
     double averages[]);
+ifstream inputFile("runners.txt");
 
 int main()
 {
@@ -92,16 +93,7 @@ void displayResults(
     double totals[],
     double averages[])
 {
-    cout << left << setw(12) << "Runner";
-
-    for (int day = 1; day <= NUM_DAYS; day++)
-    {
-        cout << setw(8) << day;
-    }
-
-    cout << setw(10) << "Total";
-    cout << setw(10) << "Average";
-    cout << endl;
+    displayHeading();
 
     for (int row = 0; row < NUM_RUNNERS; row++)
     {
@@ -121,4 +113,19 @@ void displayResults(
 
         cout << endl;
     }
+}
+
+void displayHeading()
+{
+    cout << left << setw(12) << "Runner";
+
+    for (int day = 1; day <= NUM_DAYS; day++)
+    {
+        cout << setw(8) << day;
+    }
+
+    cout << setw(10) << "Total";
+    cout << setw(10) << "Average";
+
+    cout << endl;
 }
