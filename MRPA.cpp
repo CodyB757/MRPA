@@ -1,7 +1,7 @@
 // Cody Blake
 // CSC 222
 // Marathon Runners Parallel Arrays Project (MRPA)
-//September 10th, 2026
+// September 10th, 2026
 
 #include <iostream>
 #include <fstream>
@@ -33,5 +33,25 @@ int main()
 
     double averages[NUM_RUNNERS];
 
+    readRunnerData(runnerNames, miles);
+
     return 0;
+}
+
+void readRunnerData(string names[],
+    double miles[][NUM_DAYS])
+{
+    ifstream inputFile("runners.txt");
+
+    for (int row = 0; row < NUM_RUNNERS; row++)
+    {
+        inputFile >> names[row];
+
+        for (int col = 0; col < NUM_DAYS; col++)
+        {
+            inputFile >> miles[row][col];
+        }
+    }
+
+    inputFile.close();
 }
